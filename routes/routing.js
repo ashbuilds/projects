@@ -1,27 +1,20 @@
-var Person = require('../models/person');
+var Person = require('../models/person');		
 
 module.exports = function(app, router) {
 
-    var path = "/nodeSample/";
-    path = "/";
+    var path = "/";
 
-    router.use(function(req, res, next) {
-        console.log(__filename, __dirname);
-        console.log('new Request..');
-        next();
-    });
-
-    router.get(path, function(req, res) {
+    router.get(path, function(req, res) {						//Default app route
         res.json({
-            message: 'Test api on azure'
+            message: 'Something is so awesome inside!!!'
         });
     });
 
-    router.route('/person')
-        .post(function(req, res) {
+    router.route('/person')										//Set route to person for CURD Ops
+        .post(function(req, res) {								//Route to create new Person
             var person = new Person();
 
-            Object.keys(req.body).forEach(function(key) {
+            Object.keys(req.body).forEach(function(key) {		//Getting each key/value from request and append it to person collection.	
                 person[key] = req.body[key];
             })
 
@@ -34,7 +27,7 @@ module.exports = function(app, router) {
             });
 
         })
-        .get(function(req, res) {
+        .get(function(req, res) {								//Route to Get all Person
             Person.find(function(err, person) {
                 if (err)
                     res.send(err);
@@ -43,15 +36,15 @@ module.exports = function(app, router) {
             });
         });
 
-    router.route('/person/:person_id')
-        .get(function(req, res) {
+    router.route('/person/:person_id')							//Set route to person by id for URD Ops
+        .get(function(req, res) {								//Get Person by ID
             Person.findById(req.params.person_id, function(err, person) {
                 if (err)
                     res.send(err);
                 res.json(person);
             });
         })
-        .put(function(req, res) {
+        .put(function(req, res) {								//Update Person By ID
             Person.findById(req.params.person_id, function(err, person) {
 
                 if (err)
@@ -72,7 +65,7 @@ module.exports = function(app, router) {
 
             });
         })
-        .delete(function(req, res) {
+        .delete(function(req, res) {							//Delete Person 	
             Person.remove({
                 _id: req.params.person_id
             }, function(err, person) {
@@ -85,16 +78,16 @@ module.exports = function(app, router) {
             });
         });
 
-    router.route('/person/filter')
+    router.route('/person/filter')							//Perform Filter and sort 
         .post(function(req, res) {
-            var sortBy = "sortBy" in req.body ? req.body.sortBy : null;
+            var sortBy = "sortBy" in req.body ? req.body.sortBy : null;		//Get SortBy key value
             delete req.body.sortBy;
 
-            Person.find(req.body).sort(sortBy).exec(function(err, result) {
+            Person.find(req.body).sort(sortBy).exec(function(err, result) {	//Find person by given Object and apply sort if Available.	
                 err ? res.send(err) : res.json(result);
             })
         });
 
-    app.use(path+"api", router);
+    app.use(path+"api", router);							//Set Api route /api
 
 }
