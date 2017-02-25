@@ -95,6 +95,6 @@ module.exports = function(app, router) {
             })
         });
 
-    app.use(path, router);
+    app.use(path+"api", router);
 
 }
