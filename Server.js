@@ -11,6 +11,7 @@ db.once('open', function() {
     console.log("Connected to Database !!")
 });
 
+app.use(express.static(process.cwd() + '/scbbank'));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
