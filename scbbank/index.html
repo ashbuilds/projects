@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="../libraries/css/normalize.css">
+	<link rel="stylesheet" href="../libraries/fontawesome/css/font-awesome.css">
+	<link rel="stylesheet" href="css/style.css">
+	<title>SCB Locator</title>
+	<link rel="icon" href="images/favicon.ico" type="image/ico">
+</head>
+<body>
+<div class="css_main-wrapper bg_primary">
+	<header>
+		<ul>
+			<li class="bg_secondary css_default-transition _js_sideBar_toggle" data-for="toggleSideBar">
+				<i class="fa fa-cog" aria-hidden="true"></i>
+			</li>
+		</ul>
+	</header>
+	<div class="css_container">
+		<aside id="toggleSideBar" class="css_default-transition">
+		<div class="css_setting-container">
+		<a><img src="images/scb_bank.png"/>
+		<span>SCB Locator</span>
+		</a>
+		<h3>Filters</h3>
+		<ul class="css_filter-list">
+		<li class="css_default-transition"><label><input class="_js_filter-input" type=checkbox  value="atm"/><i class="fa fa-check"></i>SCB ATM<label></li>
+		<li class="css_default-transition"><label><input class="_js_filter-input" type=checkbox  value="cdm"/><i class="fa fa-check"></i>SCB CDM<label></li>
+		<li class="css_default-transition"><label><input class="_js_filter-input" type=checkbox  value="exchange"/><i class="fa fa-check"></i>SCB Exchange<label></li>
+		<li class="css_default-transition"><label><input class="_js_filter-input" type=checkbox  value="bank"/><i class="fa fa-check"></i>SCB Bank<label></li>
+		</ul>
+		</div>
+		</aside>
+		<article class="css_default-transition">
+			<div class="css_map-container _js_map-container css_default-transition">
+				<div id="mapview" class="css_map-container"></div>
+			</div>
+		</article>
+	</div>
+</div>
+<script src="../libraries/js/jquery/jquery-3.1.1.min.js"></script> <!-- jQuery -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcgWIw9TAvebsCgceKrxB_bZFcyxSn5vQ&libraries=places,visualization"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
